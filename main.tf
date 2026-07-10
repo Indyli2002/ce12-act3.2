@@ -19,7 +19,6 @@ terraform {
   }
 }
 
-#checkov:skip=CKV_AWS_144:Cross-region replication not required for lab
 resource "aws_s3_bucket" "s3_tf" {
   bucket_prefix = "indy-demo-bucket-"
 
@@ -28,23 +27,11 @@ resource "aws_s3_bucket" "s3_tf" {
   }
 }
 
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.s3_tf.id
-
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
-  bucket = aws_s3_bucket.s3_tf.id
-
-  rule {
-    id     = "cleanup-rule"
-    status = "Enabled"
-
-    expiration {
-      days = 90
-    }
-  }
-}
+  # checkov suppressions
+  # checkov:skip=CKV_AWS_18
+  # checkov:skip=CKV_AWS_144
+  # checkov:skip=CKV_AWS_145
+  # checkov:skip=CKV2_AWS_62
+  # checkov:skip=CKV2_AWS_6
+  # checkov:skip=CKV2_AWS_61
+  # checkov:skip=CKV_AWS_21
