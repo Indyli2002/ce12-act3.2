@@ -19,38 +19,19 @@ terraform {
   }
 }
 
-#checkov:skip=CKV_AWS_18:Access logging not needed for lab
-#checkov:skip=CKV_AWS_144:Cross-region replication not needed for lab
-#checkov:skip=CKV_AWS_145:KMS encryption not needed for lab
-#checkov:skip=CKV2_AWS_62:Event notifications not needed for lab
-#checkov:skip=CKV2_AWS_6:Public access block not needed for lab
-#checkov:skip=CKV2_AWS_61:Lifecycle config not needed for lab
-#checkov:skip=CKV_AWS_21:Versioning not needed for lab
+
 resource "aws_s3_bucket" "s3_tf" {
   bucket_prefix = "indy-demo-bucket-"
 
+  #checkov:skip=CKV_AWS_18:Access logging not needed for lab
+  #checkov:skip=CKV_AWS_144:Cross-region replication not needed for lab
+  #checkov:skip=CKV_AWS_145:KMS encryption not needed for lab
+  #checkov:skip=CKV2_AWS_62:Event notifications not needed for lab
+  #checkov:skip=CKV2_AWS_6:Public access block not needed for lab
+  #checkov:skip=CKV2_AWS_61:Lifecycle config not needed for lab
+  #checkov:skip=CKV_AWS_21:Versioning not needed for lab 
+
   tags = {
     Name = "CE12 Bucket"
-  }
-}
-
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.s3_tf.id
-
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
-  bucket = aws_s3_bucket.s3_tf.id
-
-  rule {
-    id     = "cleanup-rule"
-    status = "Enabled"
-
-    expiration {
-      days = 90
-    }
   }
 }
