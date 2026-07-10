@@ -19,6 +19,7 @@ terraform {
   }
 }
 
+#checkov:skip=CKV_AWS_144:Cross-region replication not required for lab
 resource "aws_s3_bucket" "s3_tf" {
   bucket_prefix = "indy-demo-bucket-"
 
