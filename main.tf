@@ -27,3 +27,11 @@ resource "aws_s3_bucket" "s3_tf" {
     Name        = "CE12 Bucket"
   }
 }
+
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.s3_tf.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
