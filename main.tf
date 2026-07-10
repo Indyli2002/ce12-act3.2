@@ -34,3 +34,16 @@ resource "aws_s3_bucket_versioning" "versioning" {
     status = "Enabled"
   }
 }
+
+resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
+  bucket = aws_s3_bucket.s3_tf.id
+
+  rule {
+    id     = "cleanup-rule"
+    status = "Enabled"
+
+    expiration {
+      days = 90
+    }
+  }
+}
