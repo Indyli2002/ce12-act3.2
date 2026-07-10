@@ -19,14 +19,6 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "s3_tf" {
-  bucket_prefix = "indy-demo-bucket-"
-
-  tags = {
-    Name = "CE12 Bucket"
-  }
-}
-
 # checkov suppressions
 # checkov:skip=CKV_AWS_18
 # checkov:skip=CKV_AWS_144
@@ -35,3 +27,12 @@ resource "aws_s3_bucket" "s3_tf" {
 # checkov:skip=CKV2_AWS_6
 # checkov:skip=CKV2_AWS_61
 # checkov:skip=CKV_AWS_21
+
+resource "aws_s3_bucket" "s3_tf" {
+  bucket_prefix = "indy-demo-bucket-"
+
+  tags = {
+    Name = "CE12 Bucket"
+  }
+}
+
