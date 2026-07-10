@@ -3,6 +3,16 @@ provider "aws" {
 }
 
 terraform {
+
+  required_version = ">= 1.5.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+  
   backend "s3" {
     bucket = "indyli-ce12-tfstate-12345" # Change this
     key    = "ce12-act3.2-terraform.tfstate"  # Change this
@@ -12,5 +22,8 @@ terraform {
 
 resource "aws_s3_bucket" "s3_tf" {
   bucket_prefix = "indy-demo-bucket-"
-
+  
+  tags = {
+    Name        = "CE12 Bucket"
+  }
 }
