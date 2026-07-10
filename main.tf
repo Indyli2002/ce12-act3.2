@@ -13,8 +13,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "indy-ce12-tfstate-12345" # Change this
-    key    = "ce12-act3.2-terraform.tfstate"  # Change this
+    bucket = "indy-ce12-tfstate-12345"       # Change this
+    key    = "ce12-act3.2-terraform.tfstate" # Change this
     region = "ap-southeast-1"
   }
 }
